@@ -1,0 +1,67 @@
+files:
+    app/config/config.yml:
+        excludedKeys:
+            0: imports
+            1: parameters
+            doctrine:
+                dbal:
+                    - dbname
+                    - port
+                    - user
+                    - password
+                    - charset
+                    - default_table_options
+            swiftmailer:
+                - transport
+                - host
+                - username
+                - password
+
+    app/config/config_dev.yml:
+        excludedKeys:
+            0: imports
+            monolog:
+                handlers:
+                    console:
+                        - type
+                    main:
+                        - type
+
+    app/config/config_prod.yml:
+        excludedKeys:
+            monolog:
+                handlers:
+                    main:
+                        - type
+                    nested:
+                        - type
+
+    app/config/config_test.yml:
+        excludedKeys:
+            0: imports
+
+    app/config/parameters.yml.dist:
+        excludedKeys:
+            parameters:
+                - database_host
+                - database_port
+                - database_name
+                - database_user
+                - database_password
+                - mailer_transport
+                - mailer_host
+                - mailer_user
+                - mailer_password
+
+    app/config/routing.yml:
+        depth: 1
+
+    app/config/routing_dev.yml:
+        depth: 1
+
+    app/config/security.yml:
+
+    app/config/services.yml:
+        depth: 2
+
+    yaml-sort-checker.yml:

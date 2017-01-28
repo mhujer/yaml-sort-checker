@@ -1,0 +1,11 @@
+zoo:
+    OK: 1
+
+foo:
+    bar: 1
+    dar: 2
+    car:
+        a: 1
+        b: 2
+        d: 4
+        c: 3

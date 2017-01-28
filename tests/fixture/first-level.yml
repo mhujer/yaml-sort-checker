@@ -1,0 +1,8 @@
+foo:
+    random: 1
+
+bar:
+    data: "hello"
+
+zoo:
+    data: "OK"

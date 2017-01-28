@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<ruleset name="SymfonyProject">
+	<rule ref="vendor/consistence/coding-standard/Consistence/ruleset.xml"/>
+	<rule ref="vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml">
+		<!-- any namespace can be used in use -->
+		<exclude name="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces"/>
+	</rule>
+	<rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
+		<properties>
+			<property name="rootNamespaces" type="array" value="
+				src => Mhujer\YamlSortChecker,
+				tests => Mhujer\YamlSortChecker
+			"/>
+			<property name="skipDirs" type="array" value="
+				data,
+				exceptions,
+				fixtures,
+			"/>
+		</properties>
+	</rule>
+	<rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword">
+		<properties>
+			<property name="keywordsToCheck" type="array" value="
+				T_EXTENDS,
+				T_IMPLEMENTS,
+			"/>
+		</properties>
+	</rule>
+	<rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions">
+		<properties>
+			<property name="specialExceptionNames" type="array" value="
+				Throwable,
+			"/>
+		</properties>
+	</rule>
+	<rule ref="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly">
+		<properties>
+			<property name="allowFullyQualifiedExceptions" value="true"/>
+			<property name="allowPartialUses" value="false"/>
+			<property name="fullyQualifiedKeywords" type="array" value="
+				T_EXTENDS,
+				T_IMPLEMENTS,
+			"/>
+			<property name="specialExceptionNames" type="array" value="
+				Throwable,
+			"/>
+		</properties>
+	</rule>
+</ruleset>

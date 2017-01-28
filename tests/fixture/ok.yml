@@ -1,0 +1,14 @@
+bar:
+    data: "hello"
+
+foo:
+    random: 1
+
+zoo:
+    data: "OK"
+    moreData:
+        evenMoreData:
+            a: 1
+            b: 2
+            c: 3
+            d: 4
