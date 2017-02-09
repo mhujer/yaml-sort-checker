@@ -7,6 +7,12 @@ use Symfony\Component\Yaml\Yaml;
 class SortChecker
 {
 
+	/**
+	 * @param string $filename
+	 * @param int $depth
+	 * @param mixed[] $excludedKeys
+	 * @return \Mhujer\YamlSortChecker\SortCheckResult
+	 */
 	public function isSorted(string $filename, int $depth, array $excludedKeys = []): SortCheckResult
 	{
 		try {
@@ -23,6 +29,13 @@ class SortChecker
 		}
 	}
 
+	/**
+	 * @param mixed[] $yamlData
+	 * @param string[] $excludedKeys
+	 * @param string|null $parent
+	 * @param int $depth
+	 * @return string[] array of error messages
+	 */
 	private function areDataSorted(
 		array $yamlData,
 		array $excludedKeys,
