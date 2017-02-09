@@ -10,6 +10,9 @@ class SortCheckResult
 	 */
 	private $messages;
 
+	/**
+	 * @param string[] $messages
+	 */
 	public function __construct(
 		array $messages
 	)
