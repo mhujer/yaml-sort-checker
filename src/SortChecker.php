@@ -39,7 +39,7 @@ class SortChecker
 	private function areDataSorted(
 		array $yamlData,
 		array $excludedKeys,
-		string $parent = null,
+		?string $parent = null,
 		int $depth
 	): array
 	{
