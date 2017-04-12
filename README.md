@@ -15,6 +15,16 @@ Usage
 3. Run `vendor/bin/yaml-sort-checker` (depends on where you have your Composer bin directory)
 4. Exclude the yaml keys you don't want to sort - e.g. it makes more sense to have them unsorted (see the [example configuration](/docs/symfony-config/yaml-sort-checker.yml))
 
+PHPStorm Integration
+---------------------
+Until [WI-35271](https://youtrack.jetbrains.com/issue/WI-35271) is resolved, YAML sort checker can be integrated into PHPStorm by using File Watcher feature.
+
+1. Open Settings -> Tools -> File Watchers
+2. Add new
+3. File type: `YAML`
+4. Program: `PATH_TO_YOUR_PROJECT\vendor\bin\yaml-sort-checker.bat`
+5. Open *Other Options* and enter: `$ProjectFileDir$` to *Working directory*
+6. Now, when you are editing YAML files, it will run the checker on every file save and will open the console if there are errors
 
 Requirements
 ------------
