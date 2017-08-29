@@ -1,9 +1,11 @@
 <?xml version="1.0"?>
 <ruleset name="SymfonyProject">
+	<exclude-pattern>vendor/</exclude-pattern>
 	<rule ref="vendor/consistence/coding-standard/Consistence/ruleset.xml"/>
-	<rule ref="vendor/slevomat/coding-standard/SlevomatCodingStandard/ruleset.xml">
-		<!-- any namespace can be used in use -->
-		<exclude name="SlevomatCodingStandard.Namespaces.UseOnlyWhitelistedNamespaces"/>
+	<rule ref="SlevomatCodingStandard.Namespaces.AlphabeticallySortedUses">
+		<properties>
+			<property name="caseSensitive" value="false"/>
+		</properties>
 	</rule>
 	<rule ref="SlevomatCodingStandard.Files.TypeNameMatchesFileName">
 		<properties>
@@ -18,32 +20,29 @@
 			"/>
 		</properties>
 	</rule>
-	<rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedClassNameAfterKeyword">
+	<rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration">
 		<properties>
-			<property name="keywordsToCheck" type="array" value="
-				T_EXTENDS,
-				T_IMPLEMENTS,
+			<property name="usefulAnnotations" type="array" value="
+				@dataProvider,
+				@see
 			"/>
 		</properties>
 	</rule>
-	<rule ref="SlevomatCodingStandard.Namespaces.FullyQualifiedExceptions">
+	<rule ref="SlevomatCodingStandard.Commenting.ForbiddenAnnotations">
 		<properties>
-			<property name="specialExceptionNames" type="array" value="
-				Throwable,
+			<property name="forbiddenAnnotations" type="array" value="
+				@author,
+				@created,
+				@version,
+				@package,
+				@copyright,
+				@license,
+				@throws,
+				@internal,
 			"/>
 		</properties>
 	</rule>
-	<rule ref="SlevomatCodingStandard.Namespaces.ReferenceUsedNamesOnly">
-		<properties>
-			<property name="allowFullyQualifiedExceptions" value="true"/>
-			<property name="allowPartialUses" value="false"/>
-			<property name="fullyQualifiedKeywords" type="array" value="
-				T_EXTENDS,
-				T_IMPLEMENTS,
-			"/>
-			<property name="specialExceptionNames" type="array" value="
-				Throwable,
-			"/>
-		</properties>
+	<rule ref="Squiz.WhiteSpace.FunctionSpacing.After">
+		<severity>5</severity><!-- turned off by Consistence Coding Standard -->
 	</rule>
 </ruleset>
