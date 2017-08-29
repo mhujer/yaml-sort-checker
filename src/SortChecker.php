@@ -33,7 +33,7 @@ class SortChecker
 
 	/**
 	 * @param mixed[] $yamlData
-	 * @param string[] $excludedKeys
+	 * @param string[]|string[][] $excludedKeys
 	 * @param string|null $parent
 	 * @param int $depth
 	 * @return string[] array of error messages
