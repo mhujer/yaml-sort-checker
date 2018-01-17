@@ -4,6 +4,8 @@
 
 This library helps you to keep YAML file sorted to prevent unnecessary merge conflicts.
 
+> Check out the article I've written about the tool: [Keep your YAML files sorted with YAML sort checker](https://blog.martinhujer.cz/yaml-sort-checker/)
+
 Typical example is when two developers register a new service in `services.yml`. If they both add it to the end, it unevitably will lead to a merge conflict. However, when the services are alphabetically sorted, the probability of merge conflict is much lower (because the added services probably won't clash).
 
 ![yaml-sort-checker DMEO](./docs/yaml-sort-checker-demo.png)
