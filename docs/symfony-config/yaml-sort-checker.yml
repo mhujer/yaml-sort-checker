@@ -1,8 +1,6 @@
 files:
     app/config/config.yml:
         excludedKeys:
-            0: imports
-            1: parameters
             doctrine:
                 dbal:
                     - dbname
@@ -16,6 +14,9 @@ files:
                 - host
                 - username
                 - password
+          excludedSections:
+            0: imports
+            1: parameters
 
     app/config/config_dev.yml:
         excludedKeys:

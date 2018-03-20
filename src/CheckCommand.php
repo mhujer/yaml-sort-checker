@@ -50,6 +50,7 @@ class CheckCommand extends \Symfony\Component\Console\Command\Command
 
 			$depth = array_key_exists('depth', $options) ? $options['depth'] : 999;
 			$excludedKeys = array_key_exists('excludedKeys', $options) ? $options['excludedKeys'] : [];
+			$excludedSections = array_key_exists('excludedSections', $options) ? $options['excludedSections'] : [];
 
 			$output->write(sprintf('Checking %s: ', $filename));
 			if (realpath($filename) === false || !is_readable(realpath($filename))) {
@@ -57,7 +58,7 @@ class CheckCommand extends \Symfony\Component\Console\Command\Command
 				exit(1);
 			}
 
-			$sortCheckResult = $sortChecker->isSorted($filename, $depth, $excludedKeys);
+			$sortCheckResult = $sortChecker->isSorted($filename, $depth, $excludedKeys, $excludedSections);
 
 			if ($sortCheckResult->isOk()) {
 				$output->writeln('OK');

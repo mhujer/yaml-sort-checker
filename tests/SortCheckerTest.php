@@ -36,7 +36,7 @@ class SortCheckerTest extends \PHPUnit\Framework\TestCase
 		$this->assertSame('"bar" should be before "foo"', $result->getMessages()[0]);
 	}
 
-	public function testInvalidSortInFirstLevelWithExclude(): void
+	public function testInvalidSortInFirstLevelWithExcludeKeys(): void
 	{
 		$checker = new SortChecker();
 		$result = $checker->isSorted(
@@ -59,7 +59,7 @@ class SortCheckerTest extends \PHPUnit\Framework\TestCase
 		$this->assertSame('"foo.car" should be before "foo.dar"', $result->getMessages()[0]);
 	}
 
-	public function testInvalidSortInSecondLevelWithExclude(): void
+	public function testInvalidSortInSecondLevelWithExcludeKeys(): void
 	{
 		$checker = new SortChecker();
 		$result = $checker->isSorted(
@@ -117,6 +117,31 @@ class SortCheckerTest extends \PHPUnit\Framework\TestCase
 		$this->assertSame('"foo.car.c" should be before "foo.car.d"', $result->getMessages()[0]);
 	}
 
+	public function testInvalidSortWithExcludeFirstLevelSection(): void
+	{
+		$checker = new SortChecker();
+		$result = $checker->isSorted(
+			__DIR__ . '/fixture/third-level.yml',
+			999,
+			[],
+			['foo']
+		);
+		$this->assertTrue($result->isOk());
+	}
+
+	public function testInvalidSortWithExcludeSecondLevelSection(): void
+	{
+		$checker = new SortChecker();
+		$result = $checker->isSorted(
+			__DIR__ . '/fixture/third-level.yml',
+			999,
+			[],
+			['foo' => ['car']]
+		);
+		$this->assertSame([], $result->getMessages());
+		$this->assertTrue($result->isOk());
+	}
+
 	public function testSymfonyConfig(): void
 	{
 		$checker = new SortChecker();
@@ -147,7 +172,7 @@ class SortCheckerTest extends \PHPUnit\Framework\TestCase
 		);
 	}
 
-	public function testSymfonyConfigWithExcluded(): void
+	public function testSymfonyConfigWithExcludedKeys(): void
 	{
 		$checker = new SortChecker();
 		$result = $checker->isSorted(
@@ -187,6 +212,33 @@ class SortCheckerTest extends \PHPUnit\Framework\TestCase
 				'"framework.assets" should be before "framework.http_method_override"',
 				'"doctrine" should be before "twig"',
 				'"doctrine.orm.auto_mapping" should be before "doctrine.orm.naming_strategy"',
+			],
+			$result->getMessages()
+		);
+	}
+
+	public function testSymfonyConfigWithExcludedSections(): void
+	{
+		$checker = new SortChecker();
+		$result = $checker->isSorted(
+			__DIR__ . '/fixture/symfony-config.yml',
+			999,
+			[],
+			[
+				'doctrine' => [
+					'dbal',
+				],
+				0 => 'framework',
+			]
+		);
+
+		$this->assertFalse($result->isOk());
+		$this->assertSame(
+			[
+				'"doctrine" should be before "twig"',
+				'"doctrine.orm.auto_mapping" should be before "doctrine.orm.naming_strategy"',
+				'"swiftmailer.host" should be before "swiftmailer.transport"',
+				'"swiftmailer.password" should be before "swiftmailer.username"',
 			],
 			$result->getMessages()
 		);
