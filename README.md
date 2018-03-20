@@ -43,5 +43,8 @@ Author
 Changelog
 ----------
 
+## 1.1.0 (2018-03-20)
+- [#6](https://github.com/mhujer/yaml-sort-checker/pull/6) Symfony 4 compatibility (thanks *@OndraM*)
+
 ## 1.0.0 (2017-01-28)
 - initial release
