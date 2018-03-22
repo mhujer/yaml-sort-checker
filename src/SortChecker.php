@@ -13,14 +13,20 @@ class SortChecker
 	 * @param string $filename
 	 * @param int $depth
 	 * @param mixed[] $excludedKeys
+	 * @param mixed[] $excludedSections
 	 * @return \Mhujer\YamlSortChecker\SortCheckResult
 	 */
-	public function isSorted(string $filename, int $depth, array $excludedKeys = []): SortCheckResult
+	public function isSorted(
+		string $filename,
+		int $depth,
+		array $excludedKeys = [],
+		array $excludedSections = []
+	): SortCheckResult
 	{
 		try {
 			$data = Yaml::parse(file_get_contents($filename));
 
-			$errors = $this->areDataSorted($data, $excludedKeys, null, $depth);
+			$errors = $this->areDataSorted($data, $excludedKeys, $excludedSections, null, $depth);
 
 			return new SortCheckResult($errors);
 
@@ -34,6 +40,7 @@ class SortChecker
 	/**
 	 * @param mixed[] $yamlData
 	 * @param string[]|string[][] $excludedKeys
+	 * @param string[]|string[][] $excludedSections
 	 * @param string|null $parent
 	 * @param int $depth
 	 * @return string[] array of error messages
@@ -41,6 +48,7 @@ class SortChecker
 	private function areDataSorted(
 		array $yamlData,
 		array $excludedKeys,
+		array $excludedSections,
 		?string $parent = null,
 		int $depth
 	): array
@@ -52,8 +60,12 @@ class SortChecker
 		$errors = [];
 		$lastKey = null;
 		foreach ($yamlData as $key => $value) {
-			if (!in_array($key, $excludedKeys, true)) { // isn't excluded
+			$isSectionExcluded = false;
+			if (in_array($key, $excludedSections, true)) {
+				$isSectionExcluded = true;
+			}
 
+			if (!$isSectionExcluded && !in_array($key, $excludedKeys, true)) { // isn't excluded
 				if ($lastKey !== null && is_string($lastKey) && is_string($key)) {
 					if (strcasecmp($key, $lastKey) < 0) {
 						if ($parent !== null) {
@@ -69,16 +81,26 @@ class SortChecker
 				$lastKey = $key;
 			}
 
+			$nextExcludedKeys = [];
 			if (array_key_exists($key, $excludedKeys)) {
 				$nextExcludedKeys = $excludedKeys[$key];
-			} else {
-				$nextExcludedKeys = [];
 			}
 
-			if (is_array($value)) {
+			$nextExcludedSections = [];
+			if (array_key_exists($key, $excludedSections)) {
+				$nextExcludedSections = $excludedSections[$key];
+			}
+
+			if (!$isSectionExcluded && is_array($value)) {
 				$errors = array_merge(
 					$errors,
-					$this->areDataSorted($value, $nextExcludedKeys, ($parent !== null ? $parent . '.' : '') . $key, $depth - 1)
+					$this->areDataSorted(
+						$value,
+						$nextExcludedKeys,
+						$nextExcludedSections,
+						($parent !== null ? $parent . '.' : '') . $key,
+						$depth - 1
+					)
 				);
 			}
 		}
