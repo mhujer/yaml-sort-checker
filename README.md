@@ -43,6 +43,9 @@ Author
 Changelog
 ----------
 
+## 1.2.0 (2018-03-26)
+- [#9](https://github.com/mhujer/yaml-sort-checker/pull/9) Add excluded sections support (thanks *@OndraM*)
+
 ## 1.1.0 (2018-03-20)
 - [#6](https://github.com/mhujer/yaml-sort-checker/pull/6) Symfony 4 compatibility (thanks *@OndraM*)
 
