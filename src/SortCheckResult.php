@@ -7,9 +7,7 @@ namespace Mhujer\YamlSortChecker;
 class SortCheckResult
 {
 
-	/**
-	 * @var string[]
-	 */
+	/** @var string[] */
 	private $messages;
 
 	/**
