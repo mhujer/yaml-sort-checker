@@ -24,7 +24,7 @@ class SortChecker
 	): SortCheckResult
 	{
 		try {
-			$data = Yaml::parse(file_get_contents($filename));
+			$data = Yaml::parse(file_get_contents($filename), Yaml::PARSE_CUSTOM_TAGS);
 
 			$errors = $this->areDataSorted($data, $excludedKeys, $excludedSections, null, $depth);
 
