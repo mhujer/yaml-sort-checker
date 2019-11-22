@@ -43,6 +43,9 @@ Author
 Changelog
 ----------
 
+## 1.3.0 (2019-11-22)
+- [#11](https://github.com/mhujer/yaml-sort-checker/pull/11) Add excluded sections support (thanks *@hojgr*)
+
 ## 1.2.0 (2018-03-26)
 - [#9](https://github.com/mhujer/yaml-sort-checker/pull/9) Add excluded sections support (thanks *@OndraM*)
 
