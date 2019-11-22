@@ -8,7 +8,7 @@ This library helps you to keep YAML file sorted to prevent unnecessary merge con
 
 Typical example is when two developers register a new service in `services.yml`. If they both add it to the end, it unevitably will lead to a merge conflict. However, when the services are alphabetically sorted, the probability of merge conflict is much lower (because the added services probably won't clash).
 
-![yaml-sort-checker DMEO](./docs/yaml-sort-checker-demo.png)
+![yaml-sort-checker DEMO](./docs/yaml-sort-checker-demo.png)
 
 Usage
 ----
@@ -30,7 +30,7 @@ Until [WI-35271](https://youtrack.jetbrains.com/issue/WI-35271) is resolved, YAM
 
 Requirements
 ------------
-Works with PHP 7.1 or higher.
+Works with PHP 7.2 or higher and Symfony 3.4 or higher.
 
 Submitting bugs and feature requests
 ------------------------------------
@@ -42,6 +42,9 @@ Author
 
 Changelog
 ----------
+
+## 1.4.0 (2019-11-22)
+- [#12](https://github.com/mhujer/yaml-sort-checker/pull/12) Add support for Symfony 5
 
 ## 1.3.0 (2019-11-22)
 - [#11](https://github.com/mhujer/yaml-sort-checker/pull/11) Add excluded sections support (thanks *@hojgr*)
