@@ -16,6 +16,15 @@ class SortCheckerTest extends \PHPUnit\Framework\TestCase
 		$this->assertCount(0, $result->getMessages());
 	}
 
+	public function testSortedFileWithCustomTag(): void
+	{
+		$checker = new SortChecker();
+		$result = $checker->isSorted(__DIR__ . '/fixture/ok-tagged.yml', 10);
+
+		$this->assertTrue($result->isOk());
+		$this->assertCount(0, $result->getMessages());
+	}
+
 	public function testInvalidYamlIsInvalid(): void
 	{
 		$checker = new SortChecker();

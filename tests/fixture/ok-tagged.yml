@@ -1,0 +1,8 @@
+services:
+    _instanceof:
+        NonexistentClassInterface:
+            tags: ['nonexistent_tag']
+
+    NonexistentClassImplementation:
+        arguments:
+            - !tagged nonexistent_tag
