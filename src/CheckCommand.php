@@ -27,7 +27,11 @@ class CheckCommand extends \Symfony\Component\Console\Command\Command
 		}
 		$output->writeln(sprintf('Using config file "%s"', $configFilePath));
 
-		$config = Yaml::parse(file_get_contents($configFilePath));
+		$configFileContents = file_get_contents($configFilePath);
+		if ($configFileContents === false) {
+			throw new \Exception(sprintf('File "%s" could not be loaded', $configFilePath));
+		}
+		$config = Yaml::parse($configFileContents);
 
 		if (!array_key_exists('files', $config)) {
 			$output->writeln('There must be a key "files" in config');

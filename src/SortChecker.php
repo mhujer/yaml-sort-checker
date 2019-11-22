@@ -24,7 +24,11 @@ class SortChecker
 	): SortCheckResult
 	{
 		try {
-			$data = Yaml::parse(file_get_contents($filename), Yaml::PARSE_CUSTOM_TAGS);
+			$yamlContent = file_get_contents($filename);
+			if ($yamlContent === false) {
+				throw new \Exception(sprintf('File "%s" could not be loaded', $filename));
+			}
+			$data = Yaml::parse($yamlContent, Yaml::PARSE_CUSTOM_TAGS);
 
 			$errors = $this->areDataSorted($data, $excludedKeys, $excludedSections, null, $depth);
 
@@ -39,8 +43,8 @@ class SortChecker
 
 	/**
 	 * @param mixed[] $yamlData
-	 * @param string[]|string[][] $excludedKeys
-	 * @param string[]|string[][] $excludedSections
+	 * @param mixed[]|string[]|string[][] $excludedKeys
+	 * @param mixed[]|string[]|string[][] $excludedSections
 	 * @param string|null $parent
 	 * @param int $depth
 	 * @return string[] array of error messages

@@ -59,7 +59,7 @@
 		],
 		"phplint": "parallel-lint -j 10 --exclude vendor .",
 		"phpcs": "phpcs --standard=ruleset.xml --extensions=php --encoding=utf-8 --tab-width=4 -sp bin src tests",
-		"phpstan": "@php vendor/phpstan/phpstan-shim/phpstan.phar analyse bin src tests --level 5 --no-progress",
+		"phpstan": "@php vendor/phpstan/phpstan-shim/phpstan.phar analyse bin src tests --level 7 --no-progress",
 		"test": "phpunit"
 	},
 	"config": {
