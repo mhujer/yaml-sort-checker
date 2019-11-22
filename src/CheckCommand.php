@@ -16,7 +16,7 @@ class CheckCommand extends \Symfony\Component\Console\Command\Command
 		$this->setName('yaml-check-sort');
 	}
 
-	protected function execute(InputInterface $input, OutputInterface $output): void
+	protected function execute(InputInterface $input, OutputInterface $output): ?int
 	{
 		$output->writeln('#### YAML Sort Checker ####');
 
@@ -74,10 +74,10 @@ class CheckCommand extends \Symfony\Component\Console\Command\Command
 		$output->writeln('');
 		if (!$isOk) {
 			$output->writeln('Fix the YAMLs or exclude the keys in the config.');
-			exit(1);
+			return 1;
 		} else {
 			$output->writeln('All YAMLs are properly sorted.');
-			exit(0);
+			return 0;
 		}
 	}
 
