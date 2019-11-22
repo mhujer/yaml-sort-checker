@@ -19,7 +19,7 @@
 		"bin/yaml-sort-checker"
 	],
 	"require": {
-		"php": "~7.1",
+		"php": "~7.2",
 		"symfony/console": "~3.2|~4.0",
 		"symfony/yaml": "~3.3|~4.0"
 	},
