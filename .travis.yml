@@ -1,12 +1,17 @@
 language: php
 
 php:
-  - 7.2
   - 7.3
+  - 7.4
 
 env:
   - COMPOSER_DEPENDENCIES=""
   - COMPOSER_DEPENDENCIES="--prefer-lowest"
+
+jobs:
+  include:
+    - php: nightly
+      env: COMPOSER_DEPENDENCIES="--ignore-platform-reqs"
 
 install:
   - travis_retry composer update --no-interaction $COMPOSER_DEPENDENCIES
