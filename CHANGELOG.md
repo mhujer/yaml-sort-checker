@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.5.0 (2020-12-01)
+- [#14](https://github.com/mhujer/yaml-sort-checker/pull/14) Allow PHP 8
+
 ## 1.4.0 (2019-11-22)
 - [#12](https://github.com/mhujer/yaml-sort-checker/pull/12) Add support for Symfony 5
 
