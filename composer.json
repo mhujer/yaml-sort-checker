@@ -19,15 +19,16 @@
 		"bin/yaml-sort-checker"
 	],
 	"require": {
-		"php": "~7.2",
+		"php": "~7.3 | ^8.0",
 		"symfony/console": "~3.4|~4.3|~5.0",
 		"symfony/yaml": "~3.4|~4.3|~5.0"
 	},
 	"require-dev": {
-		"consistence/coding-standard": "3.9",
-		"jakub-onderka/php-parallel-lint": "1.0.0",
-		"phpstan/phpstan-shim": "0.11.19",
-		"phpunit/phpunit": "8.4.3"
+		"consistence/coding-standard": "3.10.1",
+		"php-parallel-lint/php-parallel-lint": "1.2.0",
+		"phpstan/phpstan": "0.12.57",
+		"phpunit/phpunit": "9.4.3",
+		"slevomat/coding-standard": "6.4.1"
 	},
 	"autoload": {
 		"psr-4": {
@@ -51,7 +52,6 @@
 	},
 	"scripts": {
 		"build": [
-			"@composer install --no-progress --no-interaction --no-suggest",
 			"@phplint",
 			"@phpcs",
 			"@phpstan",
@@ -59,7 +59,7 @@
 		],
 		"phplint": "parallel-lint -j 10 --exclude vendor .",
 		"phpcs": "phpcs --standard=ruleset.xml --extensions=php --encoding=utf-8 --tab-width=4 -sp bin src tests",
-		"phpstan": "@php vendor/phpstan/phpstan-shim/phpstan.phar analyse bin src tests --level 7 --no-progress",
+		"phpstan": "@php vendor/bin/phpstan analyse bin src tests --level 7 --no-progress",
 		"test": "phpunit"
 	},
 	"config": {

@@ -20,12 +20,9 @@
 			"/>
 		</properties>
 	</rule>
-	<rule ref="SlevomatCodingStandard.TypeHints.TypeHintDeclaration">
+	<rule ref="SlevomatCodingStandard.TypeHints.PropertyTypeHint">
 		<properties>
-			<property name="usefulAnnotations" type="array" value="
-				@dataProvider,
-				@see
-			"/>
+			<property name="enableNativeTypeHint" value="false"/>
 		</properties>
 	</rule>
 	<rule ref="SlevomatCodingStandard.Commenting.ForbiddenAnnotations">
