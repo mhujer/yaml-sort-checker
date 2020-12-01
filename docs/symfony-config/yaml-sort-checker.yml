@@ -14,9 +14,9 @@ files:
                 - host
                 - username
                 - password
-          excludedSections:
-            0: imports
-            1: parameters
+            excludedSections:
+                0: imports
+                1: parameters
 
     app/config/config_dev.yml:
         excludedKeys:
