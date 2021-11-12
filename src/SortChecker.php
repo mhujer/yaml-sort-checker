@@ -8,8 +8,14 @@ use Symfony\Component\Yaml\Yaml;
 
 class SortChecker
 {
+    private bool $useCaseSensitiveComparison;
 
-	/**
+    public function __construct(bool $useCaseSensitiveComparison)
+    {
+        $this->useCaseSensitiveComparison = $useCaseSensitiveComparison;
+    }
+
+    /**
 	 * @param string $filename
 	 * @param int $depth
 	 * @param mixed[] $excludedKeys
@@ -71,7 +77,7 @@ class SortChecker
 
 			if (!$isSectionExcluded && !in_array($key, $excludedKeys, true)) { // isn't excluded
 				if ($lastKey !== null && is_string($lastKey) && is_string($key)) {
-					if (strcasecmp($key, $lastKey) < 0) {
+					if ($this->stringCompare($key, $lastKey) < 0) {
 						if ($parent !== null) {
 							$printKey = $parent . '.' . $key;
 							$printLastKey = $parent . '.' . $lastKey;
@@ -111,5 +117,29 @@ class SortChecker
 
 		return $errors;
 	}
+
+    /**
+     * Binary string comparison
+     * Case sensitive depending on class config
+     *
+     * @param string $string1 <p>
+     * The first string
+     * </p>
+     * @param string $string2 <p>
+     * The second string
+     * </p>
+     * @return int less than 0 if <i>str1</i> is less than
+     * <i>str2</i>; &gt; 0 if <i>str1</i>
+     * is greater than <i>str2</i>, and 0 if they are
+     * equal.
+     */
+	private function stringCompare(string $string1, string $string2): int
+    {
+	    if($this->useCaseSensitiveComparison) {
+            return strcmp($string1, $string2);
+        }
+
+	    return strcasecmp($string1, $string2);
+    }
 
 }
