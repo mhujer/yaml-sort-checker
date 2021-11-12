@@ -32,6 +32,14 @@ Requirements
 ------------
 Works with PHP 7.2 or higher and Symfony 3.4 or higher.
 
+Optional Configuration
+----------------------
+**case-sensitive**
+
+`true` - sort checker will expect upercase to be placed before lowercase
+
+`false` - sort checker will ignore casing *(default value)*
+
 Submitting bugs and feature requests
 ------------------------------------
 Bugs and feature request are tracked on [GitHub](https://github.com/mhujer/yaml-sort-checker/issues)

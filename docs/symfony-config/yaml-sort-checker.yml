@@ -1,3 +1,4 @@
+case-sensitive: false
 files:
     app/config/config.yml:
         excludedKeys:

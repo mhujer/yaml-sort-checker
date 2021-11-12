@@ -10,6 +10,8 @@ use Symfony\Component\Yaml\Yaml;
 
 class CheckCommand extends \Symfony\Component\Console\Command\Command
 {
+    private const CASE_SENSITIVE_CONFIG_PARAM = 'case-sensitive';
+    private const FILES_CONFIG_PARAM = 'files';
 
 	protected function configure(): void
 	{
@@ -33,21 +35,23 @@ class CheckCommand extends \Symfony\Component\Console\Command\Command
 		}
 		$config = Yaml::parse($configFileContents);
 
-		if (!array_key_exists('files', $config)) {
+		if (!array_key_exists(self::FILES_CONFIG_PARAM, $config)) {
 			$output->writeln('There must be a key "files" in config');
 			exit(1);
 		}
 
-		if (count($config['files']) === 0) {
+		if (count($config[self::FILES_CONFIG_PARAM]) === 0) {
 			$output->writeln('There must be some files in the config');
 			exit(1);
 		}
 
 		$output->writeln('');
 
-		$isOk = true;
-		$sortChecker = new SortChecker();
-		foreach ($config['files'] as $filename => $options) {
+        $isOk = true;
+		$sortChecker = new SortChecker(
+            $this->isCaseSensitiveSortingFromConfig($config)
+        );
+		foreach ($config[self::FILES_CONFIG_PARAM] as $filename => $options) {
 			if (!is_array($options)) {
 				$options = [];
 			}
@@ -84,5 +88,21 @@ class CheckCommand extends \Symfony\Component\Console\Command\Command
 			return 0;
 		}
 	}
+
+    /**
+     * @param mixed $config
+     * @return bool
+     */
+    private function isCaseSensitiveSortingFromConfig(mixed $config): bool
+    {
+        $sortCaseSensitive = false; //DEFAULT VALUE
+        if (array_key_exists(self::CASE_SENSITIVE_CONFIG_PARAM, $config)) {
+            $sortCaseSensitive = (bool) filter_var(
+                $config[self::CASE_SENSITIVE_CONFIG_PARAM],
+                FILTER_VALIDATE_BOOLEAN
+            );
+        }
+        return $sortCaseSensitive;
+    }
 
 }

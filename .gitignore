@@ -2,3 +2,11 @@
 /composer.lock
 /vendor
 .phpunit.result.cache
+
+# IDE
+.buildpath
+.project
+.settings
+.externalToolBuilders
+.idea
+.vscode
