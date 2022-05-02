@@ -1,12 +1,12 @@
 {
-	"name": "mhujer/yaml-sort-checker",
+	"name": "jemmy/yaml-sort-checker",
 	"type": "library",
 	"description": "YAML sort checker checks if your YML files are properly sorted to prevent merge conflicts",
 	"keywords": [
 		"yaml",
 		"sorter"
 	],
-	"homepage": "https://github.com/mhujer/yaml-sort-checked",
+	"homepage": "https://github.com/jemmy/yaml-sort-checked",
 	"license": "MIT",
 	"authors": [
 		{
