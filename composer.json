@@ -25,7 +25,7 @@
 	},
 	"require-dev": {
 		"php-parallel-lint/php-parallel-lint": "1.2.0",
-		"phpstan/phpstan": "0.12.57",
+		"phpstan/phpstan": "^1.9",
 		"phpunit/phpunit": "9.4.3",
 		"slevomat/coding-standard": "6.4.1"
 	},
@@ -62,6 +62,9 @@
 		"test": "phpunit"
 	},
 	"config": {
-		"sort-packages": true
+		"sort-packages": true,
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
 	}
 }
