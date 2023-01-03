@@ -46,7 +46,7 @@ class SortChecker
 	 * @param mixed[]|string[]|string[][] $excludedKeys
 	 * @param mixed[]|string[]|string[][] $excludedSections
 	 * @param string|null $parent
-	 * @param int $depth
+	 * @param ?int $depth
 	 * @return string[] array of error messages
 	 */
 	private function areDataSorted(
@@ -54,7 +54,7 @@ class SortChecker
 		array $excludedKeys,
 		array $excludedSections,
 		?string $parent = null,
-		int $depth
+		?int $depth = null
 	): array
 	{
 		if ($depth === 0) {
