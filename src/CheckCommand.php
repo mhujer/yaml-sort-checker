@@ -4,11 +4,12 @@ declare(strict_types = 1);
 
 namespace Mhujer\YamlSortChecker;
 
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Yaml\Yaml;
 
-class CheckCommand extends \Symfony\Component\Console\Command\Command
+class CheckCommand extends Command
 {
 
 	protected function configure(): void

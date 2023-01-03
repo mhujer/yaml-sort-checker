@@ -4,7 +4,9 @@ declare(strict_types = 1);
 
 namespace Mhujer\YamlSortChecker;
 
-class SortCheckerTest extends \PHPUnit\Framework\TestCase
+use PHPUnit\Framework\TestCase;
+
+class SortCheckerTest extends TestCase
 {
 
 	public function testSortedFile(): void
