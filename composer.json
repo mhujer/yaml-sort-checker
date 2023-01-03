@@ -27,7 +27,7 @@
 		"php-parallel-lint/php-parallel-lint": "1.2.0",
 		"phpstan/phpstan": "^1.9",
 		"phpunit/phpunit": "^9.5",
-		"slevomat/coding-standard": "6.4.1"
+		"slevomat/coding-standard": "^8.7"
 	},
 	"autoload": {
 		"psr-4": {
